@@ -4,15 +4,15 @@
 *		  Marie Philavong, and Brandon Shippy
 *class: CS 4800 - Software Engineering
 *assignment: Final Project
-*date last modified: 01/14/25
+*date last modified: 01/15/25
 *
 *purpose: This program manages the graphical user interface (GUI) 
 *         for Santa's Wishlist application. It allows children 
 *         to create, edit, and send their wishlists to Santa, 
 *         and allows parents to view the wishlists of their children. 
 *         It includes login authentication for both child and adult 
-*         users, and ensures that only parents can modify or view 
-*         wishlists.
+*         (Santa) users, and ensures that only parents can modify or 
+*         view wishlists.
 *
 ****************************************************************/
 
@@ -40,8 +40,8 @@ public class SantaWishlistGUI extends JFrame
         // get the instance of SantaWishlistApp
         wishlistApp = SantaWishlistApp.getInstance();
 
-        // prompt for login (child or adult)
-        String[] roles = {"Child", "Adult"};
+        // prompt for login (child or adult/Santa)
+        String[] roles = {"Child", "Santa"};
         userRole = (String) JOptionPane.showInputDialog(this, "Select user role:", "Login",
                 JOptionPane.PLAIN_MESSAGE, null, roles, roles[0]);
 
@@ -51,8 +51,8 @@ public class SantaWishlistGUI extends JFrame
             return;
         }
 
-        // if user selects Adult, ask for password ('parent123')
-        if ("Adult".equals(userRole))
+        // if user selects Santa, ask for password ('parent123')
+        if ("Santa".equals(userRole))
         {
             JPasswordField passwordField = new JPasswordField(10);  // creates password field
             int attempts = 0;	// track the number of attempts
@@ -62,7 +62,7 @@ public class SantaWishlistGUI extends JFrame
             while (attempts < 3 && !authenticated)
             {
                 int option = JOptionPane.showConfirmDialog(this, passwordField,
-                        "Enter password for Adult access:", JOptionPane.OK_CANCEL_OPTION);
+                        "Enter password for Santa:", JOptionPane.OK_CANCEL_OPTION);
                 
                 if (option == JOptionPane.OK_OPTION)
                 {
@@ -314,7 +314,7 @@ public class SantaWishlistGUI extends JFrame
         *purpose: Displays the parent view, showing the child's wishlist.
         *         Only adults can access this feature.
         ****************************************************************/
-        parentViewButton.setEnabled("Adult".equals(userRole));
+        parentViewButton.setEnabled("Santa".equals(userRole));
         parentViewButton.addActionListener(new ActionListener()
         {
             @Override
