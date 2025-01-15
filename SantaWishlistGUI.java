@@ -11,8 +11,8 @@
 *         to create, edit, and send their wishlists to Santa, 
 *         and allows parents to view the wishlists of their children. 
 *         It includes login authentication for both child and adult 
-*         (Santa) users, and ensures that only parents can modify or 
-*         view wishlists.
+*         (Santa) users, and ensures that only parents can view  
+*         wishlists.
 *
 ****************************************************************/
 
